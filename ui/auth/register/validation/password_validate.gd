@@ -2,8 +2,8 @@ extends LineEdit
 
 var is_valid: bool
 
-func _validate(text: String) -> void:
-	if text.length() >= 8:
+func _validate(password: String) -> void:
+	if password.length() >= 8:
 		is_valid = true
 	else:
 		is_valid = false
