@@ -10,7 +10,6 @@ func _init(client: NakamaClient, exception_handler: ExceptionHandler) -> void:
 	_exception_handler = exception_handler
 	
 func login_async(email: String, password: String, username: String) -> int:
-	print(email + " " + username)
 	var new_session: NakamaSession = await _client.authenticate_email_async(
 		email, password, username, false
 	)
