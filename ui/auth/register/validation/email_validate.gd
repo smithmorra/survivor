@@ -1,6 +1,6 @@
 extends LineEdit
 
-var regex := RegEx.new()
+var regex: RegEx = RegEx.new()
 
 var is_valid: bool
 
