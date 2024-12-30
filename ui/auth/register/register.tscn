@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://76mprdsth54k"]
+[gd_scene load_steps=6 format=3 uid="uid://76mprdsth54k"]
+
+[ext_resource type="Script" path="res://ui/auth/register/register.gd" id="1_c3cdi"]
+[ext_resource type="Script" path="res://ui/auth/register/validation/email_validate.gd" id="2_13aqt"]
+[ext_resource type="Script" path="res://ui/auth/register/validation/username_edit_validate.gd" id="2_wwqot"]
+[ext_resource type="Script" path="res://ui/auth/register/validation/password_validate.gd" id="3_vbdsw"]
+[ext_resource type="Script" path="res://ui/auth/register/validation/password_repeat_validate.gd" id="4_5ryxb"]
 
 [node name="register" type="Control"]
 layout_mode = 3
@@ -9,6 +15,7 @@ offset_right = -575.0
 offset_bottom = -325.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_c3cdi")
 
 [node name="register_vbox" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -31,20 +38,24 @@ layout_mode = 2
 [node name="username_edit" type="LineEdit" parent="register_vbox"]
 layout_mode = 2
 placeholder_text = "Username"
+script = ExtResource("2_wwqot")
 
 [node name="email_edit" type="LineEdit" parent="register_vbox"]
 layout_mode = 2
 placeholder_text = "Email"
+script = ExtResource("2_13aqt")
 
 [node name="password_edit" type="LineEdit" parent="register_vbox"]
 layout_mode = 2
 placeholder_text = "Password"
 secret = true
+script = ExtResource("3_vbdsw")
 
-[node name="password_confirm_edit" type="LineEdit" parent="register_vbox"]
+[node name="password_repeat_edit" type="LineEdit" parent="register_vbox"]
 layout_mode = 2
 placeholder_text = "Repeat password"
 secret = true
+script = ExtResource("4_5ryxb")
 
 [node name="register_btn" type="Button" parent="register_vbox"]
 layout_mode = 2
@@ -53,3 +64,9 @@ text = "Register
 
 [node name="h_sep2" type="HSeparator" parent="register_vbox"]
 layout_mode = 2
+
+[connection signal="text_changed" from="register_vbox/username_edit" to="register_vbox/username_edit" method="_on_text_changed"]
+[connection signal="text_changed" from="register_vbox/email_edit" to="register_vbox/email_edit" method="_on_text_changed"]
+[connection signal="text_changed" from="register_vbox/password_edit" to="register_vbox/password_edit" method="_on_text_changed"]
+[connection signal="text_changed" from="register_vbox/password_repeat_edit" to="register_vbox/password_repeat_edit" method="_on_text_changed"]
+[connection signal="pressed" from="register_vbox/register_btn" to="." method="_on_register_btn_pressed"]

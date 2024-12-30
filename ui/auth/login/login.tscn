@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bweqxtjmpw7eu"]
+[gd_scene load_steps=2 format=3 uid="uid://bweqxtjmpw7eu"]
+
+[ext_resource type="Script" path="res://ui/auth/login/login.gd" id="1_ph4pw"]
 
 [node name="login" type="Control"]
 layout_mode = 3
@@ -9,6 +11,7 @@ offset_right = -575.0
 offset_bottom = -325.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ph4pw")
 
 [node name="login_vbox" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -53,3 +56,5 @@ text = "Login
 
 [node name="h_sep2" type="HSeparator" parent="login_vbox"]
 layout_mode = 2
+
+[connection signal="pressed" from="login_vbox/login_hbox/login_btn" to="." method="_on_login_btn_pressed"]
