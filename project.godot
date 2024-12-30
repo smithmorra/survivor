@@ -14,6 +14,11 @@ config/name="survivor"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
+ServerConnection="*res://autoload/server_connection.gd"
+
 [display]
 
 window/size/viewport_width=800

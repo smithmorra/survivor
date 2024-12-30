@@ -5,6 +5,8 @@ extends Control
 @onready var password_edit: LineEdit = $register_vbox/password_edit
 @onready var password_repeat_edit: LineEdit = $register_vbox/password_repeat_edit
 
+signal register_pressed(email, username, password)
+
 func _process(delta: float) -> void:
 	pass
 
@@ -37,6 +39,8 @@ func attempt_register() -> void:
 	elif not password_repeat_edit.is_valid:
 		print("Passwords do not match")
 		return
+	
+	register_pressed.emit(email_edit.text, password_edit.text, username_edit.text)
 
 func _on_register_btn_pressed() -> void:
 	attempt_register()

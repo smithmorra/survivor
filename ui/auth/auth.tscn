@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://biumd524eqsrq"]
+[gd_scene load_steps=5 format=3 uid="uid://biumd524eqsrq"]
 
 [ext_resource type="Script" path="res://ui/auth/rename_tabs.gd" id="1_5msrs"]
 [ext_resource type="PackedScene" uid="uid://bweqxtjmpw7eu" path="res://ui/auth/login/login.tscn" id="1_mj0af"]
+[ext_resource type="Script" path="res://ui/auth/auth.gd" id="1_rao3j"]
 [ext_resource type="PackedScene" uid="uid://76mprdsth54k" path="res://ui/auth/register/register.tscn" id="2_1b7op"]
 
 [node name="auth" type="Control"]
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_rao3j")
 
 [node name="auth_tab_container" type="TabContainer" parent="."]
 layout_mode = 0
@@ -28,3 +30,6 @@ metadata/_tab_index = 0
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[connection signal="login_pressed" from="auth_tab_container/login" to="." method="_on_login_login_pressed"]
+[connection signal="register_pressed" from="auth_tab_container/register" to="." method="_on_register_pressed"]
