@@ -7,9 +7,6 @@ extends Control
 
 signal register_pressed(email, username, password)
 
-func _process(delta: float) -> void:
-	pass
-
 func check_is_empty() -> bool:
 	if username_edit.text.is_empty():
 		print("Username cannot be empty")
