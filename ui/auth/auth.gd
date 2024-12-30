@@ -5,6 +5,14 @@ extends Control
 const max_request_attempts: int = 3
 var _server_request_attempts: int = 0
 
+func join_world_async() -> int:
+	var result: int = await ServerConnection.connect_to_server_async()
+		
+	if result == OK:
+		pass
+		
+	return result
+
 func authenticate_user_async(login: String, password: String, username: String) -> int:
 	var result: int = -1
 	while result != OK:
@@ -14,7 +22,7 @@ func authenticate_user_async(login: String, password: String, username: String) 
 		result = await ServerConnection.login_async(login, password, username)
 		
 	if result == OK:
-		print("Connected!")
+		await join_world_async()
 	else:
 		print(result, " ",ServerConnection.get_error_message())
 	_server_request_attempts = 0

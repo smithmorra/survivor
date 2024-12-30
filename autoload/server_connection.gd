@@ -13,6 +13,44 @@ var _socket: NakamaSocket
 var _expection_handler: ExceptionHandler = ExceptionHandler.new()
 var _authenticator: Authenticator = Authenticator.new(_client, _expection_handler)
 
+func connect_to_server_async():
+	_socket = Nakama.create_socket_from(_client)
+	
+	var result: NakamaAsyncResult = await _socket.connect_async(_authenticator.session)
+	var parsed_result: int = _expection_handler.parse_exception(result)
+	
+	if parsed_result == OK:
+		_socket.connect("connected", _on_socket_connected)
+		_socket.connect("connected", _on_socket_closed)
+		_socket.connect("connection_error", _on_socket_connection_error)
+		_socket.connect("received_error", _on_socket_received_error)
+		_socket.connect("received_match_presence", _on_socket_received_match_presence)
+		_socket.connect("received_match_state", _on_socket_received_match_state)
+		_socket.connect("received_channel_message", _on_socket_received_channel_message)
+
+	return parsed_result
+	
+func _on_socket_connected() -> void:
+	print("Socket connected")
+	
+func _on_socket_closed() -> void:
+	_socket = null
+	
+func _on_socket_connection_error() -> void:
+	pass
+	
+func _on_socket_received_error() -> void:
+	pass
+
+func _on_socket_received_match_presence() -> void:
+	pass
+
+func _on_socket_received_match_state() -> void:
+	pass
+	
+func _on_socket_received_channel_message() -> void:
+	pass
+
 func login_async(email: String, password: String, username: String) -> int:
 	var result: int = await _authenticator.login_async(email, password, username)
 	return result
