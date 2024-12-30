@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://76mprdsth54k"]
+
+[node name="register" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -575.0
+offset_bottom = -325.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="register_vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -93.5
+offset_right = 100.0
+offset_bottom = 93.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="h_sep" type="HSeparator" parent="register_vbox"]
+layout_mode = 2
+
+[node name="username_edit" type="LineEdit" parent="register_vbox"]
+layout_mode = 2
+placeholder_text = "Username"
+
+[node name="email_edit" type="LineEdit" parent="register_vbox"]
+layout_mode = 2
+placeholder_text = "Email"
+
+[node name="password_edit" type="LineEdit" parent="register_vbox"]
+layout_mode = 2
+placeholder_text = "Password"
+secret = true
+
+[node name="password_confirm_edit" type="LineEdit" parent="register_vbox"]
+layout_mode = 2
+placeholder_text = "Repeat password"
+secret = true
+
+[node name="register_btn" type="Button" parent="register_vbox"]
+layout_mode = 2
+text = "Register
+"
+
+[node name="h_sep2" type="HSeparator" parent="register_vbox"]
+layout_mode = 2

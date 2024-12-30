@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bweqxtjmpw7eu"]
+
+[node name="login" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -575.0
+offset_bottom = -325.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="login_vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -66.5
+offset_right = 100.0
+offset_bottom = 66.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="h_sep" type="HSeparator" parent="login_vbox"]
+layout_mode = 2
+
+[node name="login_edit" type="LineEdit" parent="login_vbox"]
+layout_mode = 2
+placeholder_text = "Username / Email"
+
+[node name="password_edit" type="LineEdit" parent="login_vbox"]
+layout_mode = 2
+placeholder_text = "Password"
+secret = true
+
+[node name="login_hbox" type="HBoxContainer" parent="login_vbox"]
+layout_mode = 2
+
+[node name="do_remember_email" type="CheckBox" parent="login_vbox/login_hbox"]
+layout_mode = 2
+text = "Remember
+"
+
+[node name="login_btn" type="Button" parent="login_vbox/login_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Login
+"
+
+[node name="h_sep2" type="HSeparator" parent="login_vbox"]
+layout_mode = 2

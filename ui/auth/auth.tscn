@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://biumd524eqsrq"]
+
+[ext_resource type="Script" path="res://ui/auth/rename_tabs.gd" id="1_5msrs"]
+[ext_resource type="PackedScene" uid="uid://bweqxtjmpw7eu" path="res://ui/auth/login/login.tscn" id="1_mj0af"]
+[ext_resource type="PackedScene" uid="uid://76mprdsth54k" path="res://ui/auth/register/register.tscn" id="2_1b7op"]
+
+[node name="auth" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="auth_tab_container" type="TabContainer" parent="."]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 300.0
+tab_alignment = 1
+current_tab = 0
+script = ExtResource("1_5msrs")
+
+[node name="login" parent="auth_tab_container" instance=ExtResource("1_mj0af")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="register" parent="auth_tab_container" instance=ExtResource("2_1b7op")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
