@@ -81,7 +81,7 @@ function survivor.match_leave(_, _, _, state, presences)
         state.presences[presence.user_id] = nil
         state.positions[presence.user_id] = nil
         state.inputs[presence.user_id] = nil
-        state.jump[presence.user_id] = nil
+        state.jumps[presence.user_id] = nil
     end
 
     return state
