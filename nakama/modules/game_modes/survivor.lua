@@ -76,7 +76,7 @@ function survivor.match_join(_, dispatcher, _, state, presences)
     return state
 end
 
-function world_control.match_leave(_, _, _, state, presences)
+function survivor.match_leave(_, _, _, state, presences)
     for _, presence in ipairs(presences) do
         state.presences[presence.session_id] = nil
         state.positions[presence.session_id] = nil
@@ -87,7 +87,7 @@ function world_control.match_leave(_, _, _, state, presences)
     return state
 end
 
-function world_control.match_loop(_, dispatcher, _, state, messages)
+function survivor.match_loop(_, dispatcher, _, state, messages)
     for _, message in ipairs(messages) do
         local op_code = message.op_code
 
