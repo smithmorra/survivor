@@ -11,6 +11,9 @@ var _client: NakamaClient = Nakama.create_client(server_key, nakama_host, nakama
 var _socket: NakamaSocket
 
 var _room_id: String
+var _channel_id: String
+
+var presences: Dictionary
 
 var _expection_handler: ExceptionHandler = ExceptionHandler.new()
 var _authenticator: Authenticator = Authenticator.new(_client, _expection_handler)
@@ -28,11 +31,23 @@ func join_room_async() -> int:
 			return parsed_result
 		
 		_room_id = room.payload
-		print(_room_id)
 	
-	var result: int
+	var match_join_result: NakamaRTAPI.Match = await _socket.join_match_async(_room_id)
+	var parsed_result: int = _expection_handler.parse_exception(match_join_result)
+
+	if parsed_result == OK:
+		print("room joined")
+		for presence in match_join_result.presences:
+			presences[presence.user_id] = presence
+
+		var chat_join_result: NakamaRTAPI.Channel = await _socket.join_chat_async("Survivor", NakamaSocket.ChannelType.Room, false, false)
+		parsed_result = _expection_handler.parse_exception(chat_join_result)
+
+		if parsed_result == OK:
+			print('Chat joined')
+			_channel_id = chat_join_result.id
 	
-	return result
+	return parsed_result
 
 func connect_to_server_async():
 	_socket = Nakama.create_socket_from(_client)
