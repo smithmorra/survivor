@@ -33,10 +33,12 @@ layout_mode = 2
 
 [node name="login_edit" type="LineEdit" parent="login_vbox"]
 layout_mode = 2
+text = "testo"
 placeholder_text = "Username / Email"
 
 [node name="password_edit" type="LineEdit" parent="login_vbox"]
 layout_mode = 2
+text = "12345678"
 placeholder_text = "Password"
 secret = true
 

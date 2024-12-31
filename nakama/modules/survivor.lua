@@ -60,14 +60,14 @@ end
 
 function survivor.match_join(_, dispatcher, _, state, presences)
     for _, presence in ipairs(presences) do
-		state.presences[presence.session_id] = presence
+		state.presences[presence.user_id] = presence
 
-        state.positions[presence.session_id] = {
+        state.positions[presence.user_id] = {
             ["x"] = 0,
             ["y"] = 0
         }
 
-        state.inputs[presence.session_id] = {
+        state.inputs[presence.user_id] = {
             ["dir"] = 0,
             ["jump"] = 0
         }
@@ -78,10 +78,10 @@ end
 
 function survivor.match_leave(_, _, _, state, presences)
     for _, presence in ipairs(presences) do
-        state.presences[presence.session_id] = nil
-        state.positions[presence.session_id] = nil
-        state.inputs[presence.session_id] = nil
-        state.jump[presence.session_id] = nil
+        state.presences[presence.user_id] = nil
+        state.positions[presence.user_id] = nil
+        state.inputs[presence.user_id] = nil
+        state.jump[presence.user_id] = nil
     end
 
     return state
@@ -99,7 +99,7 @@ function survivor.match_loop(_, dispatcher, _, state, messages)
         end
 
         if op_code == op_codes.spawn then
-            state.positions[message.sender.session_id] = {
+            state.positions[message.sender.user_id] = {
                 ["x"] = 100,
                 ["y"] = 100
             }
