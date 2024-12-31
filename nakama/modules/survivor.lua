@@ -115,18 +115,25 @@ function survivor.match_loop(_, dispatcher, _, state, messages)
         end
     end
 
-    local data = {
-        ["positions"] = state.positions,
-        ["inputs"] = state.inputs
-    }
-    local encoded = nk.json_encode(data)
-    dispatcher.broadcast_message(op_codes.update_state, encoded)
+    --local data = {
+    --    ["positions"] = state.positions,
+    --    ["inputs"] = state.inputs
+    --}
+    --local encoded = nk.json_encode(data)
+    --dispatcher.broadcast_message(op_codes.update_state, encoded)
 
-    for _, input in pairs(state.inputs) do
-        input.jump = 0
-    end
+    --for _, input in pairs(state.inputs) do
+    --    input.jump = 0
+    --end
 
     return state
+end
+
+function survivor.match_terminate(context, dispatcher, tick, state, grace_seconds)
+  local message = "Server shutting down in " .. grace_seconds .. " seconds"
+  dispatcher.broadcast_message(2, message)
+
+  return nil
 end
 
 function survivor.match_signal(_, _, _, state, data)

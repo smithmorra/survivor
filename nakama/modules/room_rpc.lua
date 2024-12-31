@@ -5,7 +5,7 @@ local function _get_first_room()
     local current_match = matches[1]
 
     if current_match == nil then
-        return nakama.match_create("game_modes/survivor", {})
+        return nakama.match_create("survivor", {})
     else
         return current_match.match_id
     end
