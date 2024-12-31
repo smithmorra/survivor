@@ -90,7 +90,7 @@ end
 function survivor.match_loop(_, dispatcher, _, state, messages)
     for _, message in ipairs(messages) do
         local op_code = message.op_code
-
+        nk.logger_info(message)
         local decoded = nk.json_decode(message.data)
         local command = commands[op_code]
 
