@@ -2,6 +2,8 @@ extends Control
 
 @onready var parent: TabContainer = $"./auth_tab_container"
 
+@onready var room_scene: PackedScene = load("res://gameplay/test_room.tscn")
+
 const max_request_attempts: int = 3
 var _server_request_attempts: int = 0
 
@@ -11,7 +13,7 @@ func join_room_async() -> int:
 	if result == OK:
 		result = await ServerConnection.join_room_async()
 	if result == OK:
-		print('room joined')
+		get_tree().change_scene_to_packed(room_scene)
 	return result
 
 func authenticate_user_async(login: String, password: String, username: String) -> int:

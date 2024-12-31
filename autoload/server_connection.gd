@@ -36,7 +36,6 @@ func join_room_async() -> int:
 	var parsed_result: int = _expection_handler.parse_exception(match_join_result)
 
 	if parsed_result == OK:
-		print("room joined")
 		for presence in match_join_result.presences:
 			presences[presence.user_id] = presence
 
@@ -44,7 +43,6 @@ func join_room_async() -> int:
 		parsed_result = _expection_handler.parse_exception(chat_join_result)
 
 		if parsed_result == OK:
-			print('Chat joined')
 			_channel_id = chat_join_result.id
 	
 	return parsed_result

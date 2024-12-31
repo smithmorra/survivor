@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg14qi5af6q02"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ribce"]
+size = Vector2(1029, 86)
+
+[node name="test_room" type="Node"]
+
+[node name="Platform" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(433.5, 497)
+shape = SubResource("RectangleShape2D_ribce")
