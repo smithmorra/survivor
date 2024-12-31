@@ -10,8 +10,29 @@ var error_message: String = ""
 var _client: NakamaClient = Nakama.create_client(server_key, nakama_host, nakama_port, nakama_scheme)
 var _socket: NakamaSocket
 
+var _room_id: String
+
 var _expection_handler: ExceptionHandler = ExceptionHandler.new()
 var _authenticator: Authenticator = Authenticator.new(_client, _expection_handler)
+
+func join_room_async() -> int:
+	if not _socket:
+		error_message = "Server not connected"
+		return ERR_UNAVAILABLE
+		
+	if not _room_id:
+		var room: NakamaAPI.ApiRpc = await _client.rpc_async(_authenticator.session, "get_room_id")
+		var parsed_result: int = _expection_handler.parse_exception(room)
+		
+		if parsed_result != OK:
+			return parsed_result
+		
+		_room_id = room.payload
+		print(_room_id)
+	
+	var result: int
+	
+	return result
 
 func connect_to_server_async():
 	_socket = Nakama.create_socket_from(_client)

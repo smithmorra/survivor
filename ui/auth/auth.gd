@@ -5,12 +5,13 @@ extends Control
 const max_request_attempts: int = 3
 var _server_request_attempts: int = 0
 
-func join_world_async() -> int:
+func join_room_async() -> int:
 	var result: int = await ServerConnection.connect_to_server_async()
 		
 	if result == OK:
-		pass
-		
+		result = await ServerConnection.join_room_async()
+	if result == OK:
+		print('room joined')
 	return result
 
 func authenticate_user_async(login: String, password: String, username: String) -> int:
@@ -22,7 +23,7 @@ func authenticate_user_async(login: String, password: String, username: String) 
 		result = await ServerConnection.login_async(login, password, username)
 		
 	if result == OK:
-		await join_world_async()
+		await join_room_async()
 	else:
 		print(result, " ",ServerConnection.get_error_message())
 	_server_request_attempts = 0
